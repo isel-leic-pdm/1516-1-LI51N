@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name" translatable="false">HelloAndroid</string>
+    <string name="msg_hello">Hello Android!</string>
+    <string name="text_button_say_hello">Say it</string>
+</resources>
