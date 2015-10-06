@@ -7,13 +7,13 @@ import android.util.Log;
 /**
  * Base class for activities that perform logging of lifecycle callbacks.
  */
-public class LoggingActivity extends AppCompatActivity {
+public abstract class LoggingActivity extends AppCompatActivity {
 
     protected final String TAG = getClass().getSimpleName();
 
     /**
      * Helper method that produces a log message with the given method name and suffix.
-     * @param methodName The name of the method whose execution is being logged.
+     * @param methodName The name of the method whose executionΩ is being logged.
      * @param suffix The suffix to be appended to the log message.
      * @return The log message.
      */
