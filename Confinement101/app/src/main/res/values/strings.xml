@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Confinement101</string>
+    <string name="button_start_text">Start</string>
+    <string name="button_cancel_text">Cancel</string>
+</resources>

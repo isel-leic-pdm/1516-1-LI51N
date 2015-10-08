@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">ParcelableCounter</string>
+    <string name="button_inc_text">Inc</string>
+    <string name="button_dec_text">Dec</string>
+</resources>
