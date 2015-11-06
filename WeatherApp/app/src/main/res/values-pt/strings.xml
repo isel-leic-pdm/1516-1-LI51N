@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Tempo</string>
+    <string name="edit_hint">Cidade</string>
+    <string name="empty_city_toast">Introduza o nome da cidade</string>
+    <string name="label_max_temp">Max</string>
+    <string name="label_min_temp">Min</string>
+    <string name="label_today">Hoje</string>
+    <string name="label_wind">Vento</string>
+    <string name="button_async">Obter Async</string>
+    <string name="button_retro">Obter Retro</string>
+    <string name="error_msg_couldntget">Erro a obter informação metereológica</string>
+
+    <string name="title_activity_main">Tempo</string>
+    <string name="title_activity_weather">Tempo</string>
+</resources>
