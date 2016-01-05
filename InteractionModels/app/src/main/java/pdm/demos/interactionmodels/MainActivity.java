@@ -4,11 +4,14 @@ import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.net.ConnectivityManager;
 import android.os.Handler;
 import android.os.Message;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 /**
@@ -43,6 +46,9 @@ public class MainActivity extends Activity {
     private void triggerFetchWithSubscriptionThroughIntentService(String cityName) {
         Log.v(TAG, "MainActivity.triggerFetchWithSubscriptionThroughIntentService() - " +
                 "Pub / Sub communication example");
+
+        // Food for thought: This implementation is flawed. Can you spot the flaw? How would you
+        // address it? Tip: What happens when the screen orientation changes?
 
         // Subscribe
         MyIntentService.ContractHelper.subscribe(this, new BroadcastReceiver() {
@@ -89,6 +95,10 @@ public class MainActivity extends Activity {
         Log.v(TAG, "MainActivity.triggerFetchWithReplyToThroughStartedService() - " + "" +
                 "Request / Reply communication example");
 
+        // Food for thought: This implementation is also flawed. Can you spot the flaw? How would you
+        // address it? Tips: What happens when the screen orientation changes? Should the solution
+        // be similar to the one appropriate for the former case (Publish/Subscribe)?
+
         startService(MyStartedService.ContractHelper.makeRequestReplyIntent(this, cityName,
                         new Handler.Callback() {
                             @Override
@@ -100,9 +110,12 @@ public class MainActivity extends Activity {
                                     Log.v(TAG, "In Activity through Messenger. Weather in "
                                             + info.getCityName() + " is "
                                             + info.getDescription());
+
                                     showResult(info);
+                                    // Message has been consumed
                                     return true;
                                 }
+                                // Message not consumed
                                 return false;
                             }
                         })
@@ -114,7 +127,11 @@ public class MainActivity extends Activity {
      * @param info The weather information to be shown.
      */
     private void showResult(WeatherInfo info) {
-        Toast.makeText(this, info.getCityName() + " : " + info.getDescription(), Toast.LENGTH_LONG)
+        final String resultMessage = info.getCityName() + " : " + info.getDescription();
+        final TextView view = (TextView) findViewById(R.id.textView);
+        view.setText(resultMessage);
+
+        Toast.makeText(this, resultMessage, Toast.LENGTH_LONG)
                 .show();
     }
 
@@ -123,6 +140,12 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        /*
+        registerReceiver(new MyNetworkStateReceiver(),
+                new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION)
+        );
+        */
 
         findViewById(R.id.buttonIS).setOnClickListener(new View.OnClickListener() {
             @Override

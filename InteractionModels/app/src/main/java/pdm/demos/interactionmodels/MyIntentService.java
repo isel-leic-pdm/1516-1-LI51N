@@ -159,6 +159,10 @@ public class MyIntentService extends IntentService {
             final WeatherInfo info = new DataMapper().convertFrom(result);
             Log.v(TAG, "MyIntentService.onHandleIntent() - "  + info.getCityName() +
                     " : " + info.getDescription());
+
+            try { Thread.sleep(5000); }
+            catch (InterruptedException _) {}
+
             // Publish result (sending it to any interested parties)
             publishResult(info);
 

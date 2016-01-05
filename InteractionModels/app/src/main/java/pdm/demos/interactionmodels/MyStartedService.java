@@ -148,6 +148,10 @@ public class MyStartedService extends LifecycleLoggingService {
                 Log.v(TAG, "onResult()");
                 // Get weather information
                 final WeatherInfoDTO result = response.body();
+
+                try { Thread.sleep(5000); }
+                catch (InterruptedException _) {}
+
                 // Check if a reply-to messenger exists
                 final Messenger replyTo = intent.getParcelableExtra(ContractHelper.EXTRA_REPLY_TO);
                 if (replyTo != null) {

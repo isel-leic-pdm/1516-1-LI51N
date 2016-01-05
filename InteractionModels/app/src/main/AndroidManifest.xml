@@ -13,7 +13,6 @@
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -21,13 +20,20 @@
         <service
             android:name=".MyIntentService"
             android:exported="false"
-            android:process=":serviceHost"/>
-
+            android:process=":serviceHost" />
         <service
             android:name=".MyStartedService"
             android:exported="false"
-            android:process=":serviceHost"/>
+            android:process=":serviceHost" />
 
+        <receiver
+            android:name=".MyNetworkStateReceiver"
+            android:exported="false"
+            android:process=":serviceHost">
+            <intent-filter>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>
